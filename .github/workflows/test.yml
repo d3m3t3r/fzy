@@ -53,10 +53,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
-    - name: Install dependencies and compile
-      run: |
-        gem install bundler
-        make
-        cd test/acceptance && bundle install --jobs 4 --retry 3
+        with:
+          ruby-version: head
+          bundler-cache: true
     - name: Run acceptance tests
       run: make acceptance
